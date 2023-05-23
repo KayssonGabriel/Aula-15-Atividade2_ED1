@@ -33,29 +33,22 @@ public class Empilhadeira {
 	}
 
 	public void reorganizarPilhas() {
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 100 && !p1.isEmpty() && !p2.isEmpty() && !p3.isEmpty(); i++) {
 			int numero = random.nextInt(3) + 1;
-
-			if (!(this.p1.isEmpty() || this.p2.isEmpty() || this.p3.isEmpty())) {
-				if (numero == 1) {
-					System.out.println("Empilhando os números " + p2.peek() + " e " + p3.peek() + " na pilha 1");
-					p1.push(this.p2.pop());
-					p1.push(this.p3.pop());
-					imprimirColunas(p1, p2, p3);
-
-				} else if (numero == 2) {
-					System.out.println("Empilhando os números " + p1.peek() + " e " + p3.peek() + " na pilha 2");
-					p2.push(this.p1.pop());
-					p2.push(this.p3.pop());
-					imprimirColunas(p1, p2, p3);
-
-				} else {
-					System.out.println("Empilhando os números " + p1.peek() + " e " + p2.peek() + " na pilha 3");
-					p3.push(this.p1.pop());
-					p3.push(this.p2.pop());
-					imprimirColunas(p1, p2, p3);
-				}
+			if (numero == 1) {
+				System.out.println("Empilhando os números " + p2.peek() + " e " + p3.peek() + " na pilha 1");
+				p1.push(p2.pop());
+				p1.push(p3.pop());
+			} else if (numero == 2) {
+				System.out.println("Empilhando os números " + p1.peek() + " e " + p3.peek() + " na pilha 2");
+				p2.push(p1.pop());
+				p2.push(p3.pop());
+			} else {
+				System.out.println("Empilhando os números " + p1.peek() + " e " + p2.peek() + " na pilha 3");
+				p3.push(p1.pop());
+				p3.push(p2.pop());
 			}
+			imprimirColunas(p1, p2, p3);
 		}
 
 		if (p1.isEmpty()) {
@@ -78,7 +71,7 @@ public class Empilhadeira {
 
 		System.out.println("Pilha 1:\t\tPilha 2:\t\tPilha 3:");
 
-		for (int i = 0; i <= maiorPilha; i++) {
+		for (int i = 0; i < maiorPilha; i++) {
 			if (topoP1 != null) {
 				System.out.print(topoP1.getDado() + "\t\t\t");
 				topoP1 = topoP1.getAnterior();
